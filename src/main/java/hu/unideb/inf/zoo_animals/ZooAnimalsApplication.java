@@ -1,13 +1,13 @@
-package hu.unideb.inf;
+package hu.unideb.inf.zoo_animals;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectApplication {
+public class ZooAnimalsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProjectApplication.class, args);
+        SpringApplication.run(ZooAnimalsApplication.class, args);
     }
 
 }
