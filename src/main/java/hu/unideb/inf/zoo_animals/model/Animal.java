@@ -9,11 +9,11 @@ import java.util.Objects;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long animalId;
     @Column(name="type")
     private String type;
     @Column(name="name")
-    private String name;
+    private String animalName;
     @Column(name="age")
     private int age;
     @Column(name="colour")
@@ -25,20 +25,20 @@ public class Animal {
     public Animal() {
     }
     public Animal(Long id, String type, String name, int age, String colour, Zoo zoo) {
-        this.id = id;
+        this.animalId = id;
         this.type = type;
-        this.name = name;
+        this.animalName = name;
         this.age = age;
         this.colour = colour;
         this.zoo = zoo;
     }
 
     public Long getId() {
-        return id;
+        return animalId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.animalId = id;
     }
 
     public String getType() {
@@ -50,11 +50,11 @@ public class Animal {
     }
 
     public String getName() {
-        return name;
+        return animalName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.animalName = name;
     }
 
     public int getAge() {
@@ -86,20 +86,20 @@ public class Animal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return age == animal.age && Objects.equals(id, animal.id) && Objects.equals(type, animal.type) && Objects.equals(name, animal.name) && Objects.equals(colour, animal.colour) && Objects.equals(zoo, animal.zoo);
+        return age == animal.age && Objects.equals(animalId, animal.animalId) && Objects.equals(type, animal.type) && Objects.equals(animalName, animal.animalName) && Objects.equals(colour, animal.colour) && Objects.equals(zoo, animal.zoo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, name, age, colour, zoo);
+        return Objects.hash(animalId, type, animalName, age, colour, zoo);
     }
 
     @Override
     public String toString() {
         return "Animal{" +
-                "id=" + id +
+                "id=" + animalId +
                 ", type='" + type + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + animalName + '\'' +
                 ", age=" + age +
                 ", colour='" + colour + '\'' +
                 ", zoo=" + zoo +

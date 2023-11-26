@@ -10,54 +10,54 @@ import java.util.Objects;
 public class Zoo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long zooId;
     @Column(name="name", unique = true)
-    private String name;
+    private String zooName;
     @Column(name="location")
-    private String location;
+    private String zooLocation;
 
     public Zoo() {
     }
     public Zoo(Long id, String name, String location) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
+        this.zooId = id;
+        this.zooName = name;
+        this.zooLocation = location;
     }
     public Long getId() {
-        return id;
+        return zooId;
     }
     public void setId(Long id) {
-        this.id = id;
+        this.zooId = id;
     }
     public String getName() {
-        return name;
+        return zooName;
     }
     public void setName(String name) {
-        this.name = name;
+        this.zooName = name;
     }
     public String getLocation() {
-        return location;
+        return zooLocation;
     }
     public void setLocation(String location) {
-        this.location = location;
+        this.zooLocation = location;
     }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Zoo zoo = (Zoo) o;
-        return Objects.equals(id, zoo.id) && Objects.equals(name, zoo.name) && Objects.equals(location, zoo.location);
+        return Objects.equals(zooId, zoo.zooId) && Objects.equals(zooName, zoo.zooName) && Objects.equals(zooLocation, zoo.zooLocation);
     }
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, location);
+        return Objects.hash(zooId, zooName, zooLocation);
     }
     @Override
     public String toString() {
         return "Zoo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", location='" + location + '\'' +
+                "id=" + zooId +
+                ", name='" + zooName + '\'' +
+                ", location='" + zooLocation + '\'' +
                 '}';
     }
 }
