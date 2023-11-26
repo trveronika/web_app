@@ -2,11 +2,13 @@ package hu.unideb.inf.zoo_animals.service.mapper;
 
 import hu.unideb.inf.zoo_animals.dto.AnimalDto;
 import hu.unideb.inf.zoo_animals.model.Animal;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
+@Mapper
 public interface AnimalMapper {
     AnimalMapper INSTANCE = Mappers.getMapper(AnimalMapper.class);
     @Mapping(source = "animal.zoo.zooId", target = "zooId")
