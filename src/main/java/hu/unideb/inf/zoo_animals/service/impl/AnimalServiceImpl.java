@@ -1,52 +1,51 @@
 package hu.unideb.inf.zoo_animals.service.impl;
 
+import hu.unideb.inf.zoo_animals.dto.AnimalDto;
 import hu.unideb.inf.zoo_animals.model.Animal;
 import hu.unideb.inf.zoo_animals.repository.AnimalRepository;
 import hu.unideb.inf.zoo_animals.service.AnimalService;
+import hu.unideb.inf.zoo_animals.service.mapper.AnimalMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
 
+    private final AnimalMapper animalMapper;
+
     @Autowired
-    public AnimalServiceImpl(AnimalRepository animalRepository) {
+    public AnimalServiceImpl(AnimalRepository animalRepository, AnimalMapper animalMapper) {
         this.animalRepository = animalRepository;
+        this.animalMapper = animalMapper;
     }
+
 
     @Override
     public List<Animal> getAllAnimals() {
-        return animalRepository.findAll();
+        return null;
     }
 
     @Override
     public Animal getAnimalById(Long id) {
-        return animalRepository.findById(id).orElse(null);
+        return null;
     }
 
     @Override
     public void saveAnimal(Animal animal) {
-        animalRepository.save(animal);
+
     }
 
     @Override
     public void updateAnimal(Long id, Animal updatedAnimal) {
-        Animal existingAnimal = animalRepository.findById(id).orElse(null);
-        if (existingAnimal != null) {
-            existingAnimal.setType(updatedAnimal.getType());
-            existingAnimal.setName(updatedAnimal.getName());
-            existingAnimal.setAge(updatedAnimal.getAge());
-            existingAnimal.setColour(updatedAnimal.getColour());
-            existingAnimal.setZoo(updatedAnimal.getZoo());
-            animalRepository.save(existingAnimal);
-        }
+
     }
 
     @Override
     public void deleteAnimal(Long id) {
-        animalRepository.deleteById(id);
+
     }
 }
