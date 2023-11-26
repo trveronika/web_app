@@ -3,33 +3,33 @@ package hu.unideb.inf.zoo_animals.dto;
 import java.util.Objects;
 
 public class ZooDto {
-    private Long id;
-    private String name;
+    private Long zooId;
+    private String zooName;
     private String location;
 
     public ZooDto() {
     }
 
     public ZooDto(Long id, String name, String location) {
-        this.id = id;
-        this.name = name;
+        this.zooId = id;
+        this.zooName = name;
         this.location = location;
     }
 
     public Long getId() {
-        return id;
+        return zooId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.zooId = id;
     }
 
     public String getName() {
-        return name;
+        return zooName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.zooName = name;
     }
 
     public String getLocation() {
@@ -45,19 +45,19 @@ public class ZooDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ZooDto zooDto = (ZooDto) o;
-        return Objects.equals(id, zooDto.id) && Objects.equals(name, zooDto.name) && Objects.equals(location, zooDto.location);
+        return Objects.equals(zooId, zooDto.zooId) && Objects.equals(zooName, zooDto.zooName) && Objects.equals(location, zooDto.location);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, location);
+        return Objects.hash(zooId, zooName, location);
     }
 
     @Override
     public String toString() {
         return "ZooDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "id=" + zooId +
+                ", name='" + zooName + '\'' +
                 ", location='" + location + '\'' +
                 '}';
     }

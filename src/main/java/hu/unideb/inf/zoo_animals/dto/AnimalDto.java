@@ -5,9 +5,9 @@ import hu.unideb.inf.zoo_animals.model.Zoo;
 import java.util.Objects;
 
 public class AnimalDto {
-    private Long id;
+    private Long animalId;
     private String type;
-    private String name;
+    private String animalName;
     private int age;
     private String colour;
     private Zoo zoo; //? Dto kell vagy sima Zoo osztály ide?
@@ -16,20 +16,20 @@ public class AnimalDto {
     }
 
     public AnimalDto(Long id, String type, String name, int age, String colour, Zoo zoo) {
-        this.id = id;
+        this.animalId = id;
         this.type = type;
-        this.name = name;
+        this.animalName = name;
         this.age = age;
         this.colour = colour;
         this.zoo = zoo;
     }
 
     public Long getId() {
-        return id;
+        return animalId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.animalId= id;
     }
 
     public String getType() {
@@ -41,11 +41,11 @@ public class AnimalDto {
     }
 
     public String getName() {
-        return name;
+        return animalName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.animalName = name;
     }
 
     public int getAge() {
@@ -77,20 +77,20 @@ public class AnimalDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnimalDto animalDto = (AnimalDto) o;
-        return age == animalDto.age && Objects.equals(id, animalDto.id) && Objects.equals(type, animalDto.type) && Objects.equals(name, animalDto.name) && Objects.equals(colour, animalDto.colour) && Objects.equals(zoo, animalDto.zoo);
+        return age == animalDto.age && Objects.equals(animalId, animalDto.animalId) && Objects.equals(type, animalDto.type) && Objects.equals(animalName, animalDto.animalName) && Objects.equals(colour, animalDto.colour) && Objects.equals(zoo, animalDto.zoo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, name, age, colour, zoo);
+        return Objects.hash(animalId, type, animalName, age, colour, zoo);
     }
 
     @Override
     public String toString() {
         return "AnimalDto{" +
-                "id=" + id +
+                "id=" + animalId +
                 ", type='" + type + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + animalName + '\'' +
                 ", age=" + age +
                 ", colour='" + colour + '\'' +
                 ", zoo=" + zoo +
