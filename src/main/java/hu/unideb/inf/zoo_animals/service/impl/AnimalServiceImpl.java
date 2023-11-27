@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AnimalServiceImpl implements AnimalService {
@@ -32,21 +31,31 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public AnimalDto getAnimalById(Long id) {
-        return null;
+        Animal animal = animalRepository.findById(id).orElse(null);
+        return animal != null ? animalMapper.entityToDto(animal) : null;
     }
 
     @Override
-    public void saveAnimal(AnimalDto animal) {
-
+    public void saveAnimal(AnimalDto animalDto) {
+        Animal animal = animalMapper.dtoToEntity(animalDto);
+        animalRepository.save(animal);
     }
 
     @Override
-    public void updateAnimal(Long id, AnimalDto updatedAnimal) {
-
+    public void updateAnimal(Long id, AnimalDto updatedAnimalDto) {
+        Animal existingAnimal = animalRepository.findById(id).orElse(null);
+        if (existingAnimal != null) {
+            existingAnimal.setType(updatedAnimalDto.getType());
+            existingAnimal.setName(updatedAnimalDto.getName());
+            existingAnimal.setAge(updatedAnimalDto.getAge());
+            existingAnimal.setColour(updatedAnimalDto.getColour());
+            existingAnimal.setZoo(updatedAnimalDto.getZoo());
+            animalRepository.save(existingAnimal);
+        }
     }
 
     @Override
     public void deleteAnimal(Long id) {
-
+        animalRepository.deleteById(id);
     }
 }

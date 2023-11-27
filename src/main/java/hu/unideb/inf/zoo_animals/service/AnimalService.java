@@ -10,9 +10,9 @@ public interface AnimalService {
 
     AnimalDto getAnimalById(Long id);
 
-    void saveAnimal(AnimalDto animal);
+    void saveAnimal(AnimalDto animalDto);
 
-    void updateAnimal(Long id, AnimalDto updatedAnimal);
+    void updateAnimal(Long id, AnimalDto updatedAnimalDto);
 
     void deleteAnimal(Long id);
 }

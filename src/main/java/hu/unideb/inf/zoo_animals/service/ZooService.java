@@ -10,9 +10,9 @@ public interface ZooService {
 
     ZooDto getZooById(Long id);
 
-    void saveZoo(ZooDto zoo);
+    void saveZoo(ZooDto zooDto);
 
-    void updateZoo(Long id, ZooDto updatedZoo);
+    void updateZoo(Long id, ZooDto updatedZooDto);
 
     void deleteZoo(Long id);
 }

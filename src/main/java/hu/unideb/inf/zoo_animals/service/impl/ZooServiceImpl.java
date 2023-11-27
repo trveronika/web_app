@@ -29,26 +29,34 @@ public class ZooServiceImpl implements ZooService {
 
     @Override
     public List<ZooDto> getAllZoos() {
-        return null;
+        List<Zoo> zoos = zooRepository.findAll();
+        return zooMapper.entityListToDtoList(zoos);
     }
 
     @Override
     public ZooDto getZooById(Long id) {
-        return null;
+        Zoo zoo = zooRepository.findById(id).orElse(null);
+        return zoo != null ? zooMapper.entityToDto(zoo) : null;
     }
 
     @Override
-    public void saveZoo(ZooDto zoo) {
-
+    public void saveZoo(ZooDto zooDto) {
+        Zoo zoo = zooMapper.dtoToEntity(zooDto);
+        zooRepository.save(zoo);
     }
 
     @Override
-    public void updateZoo(Long id, ZooDto updatedZoo) {
-
+    public void updateZoo(Long id, ZooDto updatedZooDto) {
+        Zoo existingZoo = zooRepository.findById(id).orElse(null);
+        if (existingZoo != null) {
+            existingZoo.setName(updatedZooDto.getName());
+            existingZoo.setLocation(updatedZooDto.getLocation());
+            zooRepository.save(existingZoo);
+        }
     }
 
     @Override
     public void deleteZoo(Long id) {
-
+        zooRepository.deleteById(id);
     }
 }
