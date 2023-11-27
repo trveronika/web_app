@@ -25,22 +25,23 @@ public class AnimalServiceImpl implements AnimalService {
 
 
     @Override
-    public List<Animal> getAllAnimals() {
+    public List<AnimalDto> getAllAnimals() {
+        List<Animal> animals = animalRepository.findAll();
+        return animalMapper.entityListToDtoList(animals);
+    }
+
+    @Override
+    public AnimalDto getAnimalById(Long id) {
         return null;
     }
 
     @Override
-    public Animal getAnimalById(Long id) {
-        return null;
-    }
-
-    @Override
-    public void saveAnimal(Animal animal) {
+    public void saveAnimal(AnimalDto animal) {
 
     }
 
     @Override
-    public void updateAnimal(Long id, Animal updatedAnimal) {
+    public void updateAnimal(Long id, AnimalDto updatedAnimal) {
 
     }
 

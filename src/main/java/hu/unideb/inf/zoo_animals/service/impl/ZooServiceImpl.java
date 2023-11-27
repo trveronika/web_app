@@ -28,22 +28,22 @@ public class ZooServiceImpl implements ZooService {
     }
 
     @Override
-    public List<Zoo> getAllZoos() {
+    public List<ZooDto> getAllZoos() {
         return null;
     }
 
     @Override
-    public Zoo getZooById(Long id) {
+    public ZooDto getZooById(Long id) {
         return null;
     }
 
     @Override
-    public void saveZoo(Zoo zoo) {
+    public void saveZoo(ZooDto zoo) {
 
     }
 
     @Override
-    public void updateZoo(Long id, Zoo updatedZoo) {
+    public void updateZoo(Long id, ZooDto updatedZoo) {
 
     }
 

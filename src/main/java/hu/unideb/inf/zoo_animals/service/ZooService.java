@@ -1,17 +1,18 @@
 package hu.unideb.inf.zoo_animals.service;
 
+import hu.unideb.inf.zoo_animals.dto.ZooDto;
 import hu.unideb.inf.zoo_animals.model.Zoo;
 
 import java.util.List;
 
 public interface ZooService {
-    List<Zoo> getAllZoos();
+    List<ZooDto> getAllZoos();
 
-    Zoo getZooById(Long id);
+    ZooDto getZooById(Long id);
 
-    void saveZoo(Zoo zoo);
+    void saveZoo(ZooDto zoo);
 
-    void updateZoo(Long id, Zoo updatedZoo);
+    void updateZoo(Long id, ZooDto updatedZoo);
 
     void deleteZoo(Long id);
 }
