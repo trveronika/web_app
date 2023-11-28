@@ -24,21 +24,22 @@ public class Animal {
 
     public Animal() {
     }
-    public Animal(Long id, String type, String name, int age, String colour, Zoo zoo) {
-        this.animalId = id;
+
+    public Animal(Long animalId, String type, String animalName, int age, String colour, Zoo zoo) {
+        this.animalId = animalId;
         this.type = type;
-        this.animalName = name;
+        this.animalName = animalName;
         this.age = age;
         this.colour = colour;
         this.zoo = zoo;
     }
 
-    public Long getId() {
+    public Long getAnimalId() {
         return animalId;
     }
 
-    public void setId(Long id) {
-        this.animalId = id;
+    public void setAnimalId(Long animalId) {
+        this.animalId = animalId;
     }
 
     public String getType() {
@@ -49,12 +50,12 @@ public class Animal {
         this.type = type;
     }
 
-    public String getName() {
+    public String getAnimalName() {
         return animalName;
     }
 
-    public void setName(String name) {
-        this.animalName = name;
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
     }
 
     public int getAge() {
@@ -97,9 +98,9 @@ public class Animal {
     @Override
     public String toString() {
         return "Animal{" +
-                "id=" + animalId +
+                "animalId=" + animalId +
                 ", type='" + type + '\'' +
-                ", name='" + animalName + '\'' +
+                ", animalName='" + animalName + '\'' +
                 ", age=" + age +
                 ", colour='" + colour + '\'' +
                 ", zoo=" + zoo +

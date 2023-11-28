@@ -18,29 +18,37 @@ public class Zoo {
 
     public Zoo() {
     }
-    public Zoo(Long id, String name, String location) {
-        this.zooId = id;
-        this.zooName = name;
+
+    public Zoo(Long zooId, String zooName, String location) {
+        this.zooId = zooId;
+        this.zooName = zooName;
         this.location = location;
     }
-    public Long getId() {
+
+    public Long getZooId() {
         return zooId;
     }
-    public void setId(Long id) {
-        this.zooId = id;
+
+    public void setZooId(Long zooId) {
+        this.zooId = zooId;
     }
-    public String getName() {
+
+    public String getZooName() {
         return zooName;
     }
-    public void setName(String name) {
-        this.zooName = name;
+
+    public void setZooName(String zooName) {
+        this.zooName = zooName;
     }
+
     public String getLocation() {
         return location;
     }
+
     public void setLocation(String location) {
         this.location = location;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,15 +56,17 @@ public class Zoo {
         Zoo zoo = (Zoo) o;
         return Objects.equals(zooId, zoo.zooId) && Objects.equals(zooName, zoo.zooName) && Objects.equals(location, zoo.location);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(zooId, zooName, location);
     }
+
     @Override
     public String toString() {
         return "Zoo{" +
-                "id=" + zooId +
-                ", name='" + zooName + '\'' +
+                "zooId=" + zooId +
+                ", zooName='" + zooName + '\'' +
                 ", location='" + location + '\'' +
                 '}';
     }
