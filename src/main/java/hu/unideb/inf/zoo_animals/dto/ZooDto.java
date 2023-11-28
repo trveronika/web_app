@@ -10,26 +10,26 @@ public class ZooDto {
     public ZooDto() {
     }
 
-    public ZooDto(Long id, String name, String location) {
-        this.zooId = id;
-        this.zooName = name;
+    public ZooDto(Long zooId, String zooName, String location) {
+        this.zooId = zooId;
+        this.zooName = zooName;
         this.location = location;
     }
 
-    public Long getId() {
+    public Long getZooId() {
         return zooId;
     }
 
-    public void setId(Long id) {
-        this.zooId = id;
+    public void setZooId(Long zooId) {
+        this.zooId = zooId;
     }
 
-    public String getName() {
+    public String getZooName() {
         return zooName;
     }
 
-    public void setName(String name) {
-        this.zooName = name;
+    public void setZooName(String zooName) {
+        this.zooName = zooName;
     }
 
     public String getLocation() {
@@ -56,8 +56,8 @@ public class ZooDto {
     @Override
     public String toString() {
         return "ZooDto{" +
-                "id=" + zooId +
-                ", name='" + zooName + '\'' +
+                "zooId=" + zooId +
+                ", zooName='" + zooName + '\'' +
                 ", location='" + location + '\'' +
                 '}';
     }
