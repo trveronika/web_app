@@ -46,9 +46,7 @@ public class AnimalServiceImpl implements AnimalService {
         Animal existingAnimal = animalRepository.findById(id).orElse(null);
         if (existingAnimal != null) {
             existingAnimal.setType(updatedAnimalDto.getType());
-            existingAnimal.setName(updatedAnimalDto.getName());
             existingAnimal.setAge(updatedAnimalDto.getAge());
-            existingAnimal.setColour(updatedAnimalDto.getColour());
             existingAnimal.setZoo(updatedAnimalDto.getZoo());
             animalRepository.save(existingAnimal);
         }

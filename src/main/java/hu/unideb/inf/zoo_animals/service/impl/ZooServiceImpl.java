@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ZooServiceImpl implements ZooService {
@@ -49,7 +48,7 @@ public class ZooServiceImpl implements ZooService {
     public void updateZoo(Long id, ZooDto updatedZooDto) {
         Zoo existingZoo = zooRepository.findById(id).orElse(null);
         if (existingZoo != null) {
-            existingZoo.setName(updatedZooDto.getName());
+            existingZoo.setZooName(updatedZooDto.getZooName());
             existingZoo.setLocation(updatedZooDto.getLocation());
             zooRepository.save(existingZoo);
         }
