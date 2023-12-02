@@ -16,8 +16,8 @@ public class AnimalController {
     }
     @GetMapping
     public ResponseEntity<List<AnimalDto>> getAllAnimals() {
-        List<AnimalDto> dogs = animalService.getAllAnimals();
-        return new ResponseEntity<>(dogs, HttpStatus.OK);
+        List<AnimalDto> animals = animalService.getAllAnimals();
+        return new ResponseEntity<>(animals, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<AnimalDto> getAnimalById(@PathVariable Long id) {

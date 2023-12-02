@@ -1,10 +1,8 @@
 package hu.unideb.inf.zoo_animals.controller;
 
 import hu.unideb.inf.zoo_animals.dto.ZooDto;
-import hu.unideb.inf.zoo_animals.repository.ZooRepository;
 import hu.unideb.inf.zoo_animals.service.ZooService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
