@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name="Zoo")
+@Table(name="zoos")
 public class Zoo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "zoo_id")
     private Long zooId;
-    @Column(name="name", unique = true)
+    @Column(name="name", unique = true, nullable = false)
     private String zooName;
-    @Column(name="location")
+    @Column(name="location", nullable = false)
     private String location;
 
     public Zoo() {

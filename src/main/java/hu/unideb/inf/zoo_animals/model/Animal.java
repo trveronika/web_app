@@ -5,32 +5,27 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name="Animal")
+@Table(name="animals")
 public class Animal {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "animal_id")
     private Long animalId;
     @Column(name="type")
     private String type;
-    @Column(name="name")
-    private String animalName;
     @Column(name="age")
     private int age;
-    @Column(name="colour")
-    private String colour;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "zoo_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "zoo_id", nullable = false)
     private Zoo zoo;
 
     public Animal() {
     }
 
-    public Animal(Long animalId, String type, String animalName, int age, String colour, Zoo zoo) {
+    public Animal(Long animalId, String type, int age, Zoo zoo) {
         this.animalId = animalId;
         this.type = type;
-        this.animalName = animalName;
         this.age = age;
-        this.colour = colour;
         this.zoo = zoo;
     }
 
@@ -50,28 +45,12 @@ public class Animal {
         this.type = type;
     }
 
-    public String getAnimalName() {
-        return animalName;
-    }
-
-    public void setAnimalName(String animalName) {
-        this.animalName = animalName;
-    }
-
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
     }
 
     public Zoo getZoo() {
@@ -87,12 +66,12 @@ public class Animal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return age == animal.age && Objects.equals(animalId, animal.animalId) && Objects.equals(type, animal.type) && Objects.equals(animalName, animal.animalName) && Objects.equals(colour, animal.colour) && Objects.equals(zoo, animal.zoo);
+        return age == animal.age && Objects.equals(animalId, animal.animalId) && Objects.equals(type, animal.type) && Objects.equals(zoo, animal.zoo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(animalId, type, animalName, age, colour, zoo);
+        return Objects.hash(animalId, type, age, zoo);
     }
 
     @Override
@@ -100,9 +79,7 @@ public class Animal {
         return "Animal{" +
                 "animalId=" + animalId +
                 ", type='" + type + '\'' +
-                ", animalName='" + animalName + '\'' +
-                ", age=" + age +
-                ", colour='" + colour + '\'' +
+                ", age=" + age  +
                 ", zoo=" + zoo +
                 '}';
     }
