@@ -4,37 +4,23 @@ import hu.unideb.inf.zoo_animals.dao.request.SignUpRequest;
 import hu.unideb.inf.zoo_animals.dao.request.SigninRequest;
 import hu.unideb.inf.zoo_animals.dao.response.JwtAuthenticationResponse;
 import hu.unideb.inf.zoo_animals.model.Role;
+import hu.unideb.inf.zoo_animals.model.User;
 import hu.unideb.inf.zoo_animals.repository.UserRepository;
 import hu.unideb.inf.zoo_animals.service.AuthenticationService;
 import hu.unideb.inf.zoo_animals.service.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-
-    @Autowired
-    public AuthenticationServiceImpl(
-            UserRepository userRepository,
-            PasswordEncoder passwordEncoder,
-            JwtService jwtService,
-            AuthenticationManager authenticationManager,
-            @Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.jwtService = jwtService;
-        this.authenticationManager = authenticationManager;
-    }
     @Override
     public JwtAuthenticationResponse signup(SignUpRequest request) {
         var user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
@@ -55,3 +41,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 }
+
