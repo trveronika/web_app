@@ -1,11 +1,8 @@
 package hu.unideb.inf.zoo_animals.service.impl;
 
-import hu.unideb.inf.zoo_animals.dto.ZooDto;
 import hu.unideb.inf.zoo_animals.model.Zoo;
-import hu.unideb.inf.zoo_animals.repository.AnimalRepository;
 import hu.unideb.inf.zoo_animals.repository.ZooRepository;
 import hu.unideb.inf.zoo_animals.service.ZooService;
-import hu.unideb.inf.zoo_animals.service.mapper.ZooMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,42 +11,33 @@ import java.util.List;
 @Service
 public class ZooServiceImpl implements ZooService {
     private final ZooRepository zooRepository;
-    private final ZooMapper zooMapper;
-
-    private final AnimalRepository animalRepository;
-
 
     @Autowired
-    public ZooServiceImpl(ZooRepository zooRepository, ZooMapper zooMapper, AnimalRepository animalRepository) {
+    public ZooServiceImpl(ZooRepository zooRepository) {
         this.zooRepository = zooRepository;
-        this.zooMapper = zooMapper;
-        this.animalRepository = animalRepository;
     }
 
     @Override
-    public List<ZooDto> getAllZoos() {
-        List<Zoo> zoos = zooRepository.findAll();
-        return zooMapper.entityListToDtoList(zoos);
+    public List<Zoo> getAllZoos() {
+        return zooRepository.findAll();
     }
 
     @Override
-    public ZooDto getZooById(Long id) {
-        Zoo zoo = zooRepository.findById(id).orElse(null);
-        return zoo != null ? zooMapper.entityToDto(zoo) : null;
+    public Zoo getZooById(Long id) {
+        return zooRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void saveZoo(ZooDto zooDto) {
-        Zoo zoo = zooMapper.dtoToEntity(zooDto);
+    public void saveZoo(Zoo zoo) {
         zooRepository.save(zoo);
     }
 
     @Override
-    public void updateZoo(Long id, ZooDto updatedZooDto) {
+    public void updateZoo(Long id, Zoo updatedZoo) {
         Zoo existingZoo = zooRepository.findById(id).orElse(null);
         if (existingZoo != null) {
-            existingZoo.setZooName(updatedZooDto.getZooName());
-            existingZoo.setLocation(updatedZooDto.getLocation());
+            existingZoo.setZooName(updatedZoo.getZooName());
+            existingZoo.setLocation(updatedZoo.getLocation());
             zooRepository.save(existingZoo);
         }
     }
@@ -59,3 +47,4 @@ public class ZooServiceImpl implements ZooService {
         zooRepository.deleteById(id);
     }
 }
+

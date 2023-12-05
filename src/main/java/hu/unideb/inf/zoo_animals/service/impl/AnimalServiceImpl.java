@@ -1,10 +1,8 @@
 package hu.unideb.inf.zoo_animals.service.impl;
 
-import hu.unideb.inf.zoo_animals.dto.AnimalDto;
 import hu.unideb.inf.zoo_animals.model.Animal;
 import hu.unideb.inf.zoo_animals.repository.AnimalRepository;
 import hu.unideb.inf.zoo_animals.service.AnimalService;
-import hu.unideb.inf.zoo_animals.service.mapper.AnimalMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,40 +12,32 @@ import java.util.List;
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
 
-    private final AnimalMapper animalMapper;
-
     @Autowired
-    public AnimalServiceImpl(AnimalRepository animalRepository, AnimalMapper animalMapper) {
+    public AnimalServiceImpl(AnimalRepository animalRepository) {
         this.animalRepository = animalRepository;
-        this.animalMapper = animalMapper;
-    }
-
-
-    @Override
-    public List<AnimalDto> getAllAnimals() {
-        List<Animal> animals = animalRepository.findAll();
-        return animalMapper.entityListToDtoList(animals);
     }
 
     @Override
-    public AnimalDto getAnimalById(Long id) {
-        Animal animal = animalRepository.findById(id).orElse(null);
-        return animal != null ? animalMapper.entityToDto(animal) : null;
+    public List<Animal> getAllAnimals() {
+        return animalRepository.findAll();
     }
 
     @Override
-    public void saveAnimal(AnimalDto animalDto) {
-        Animal animal = animalMapper.dtoToEntity(animalDto);
+    public Animal getAnimalById(Long id) {
+        return animalRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveAnimal(Animal animal) {
         animalRepository.save(animal);
     }
 
     @Override
-    public void updateAnimal(Long id, AnimalDto updatedAnimalDto) {
+    public void updateAnimal(Long id, Animal updatedAnimal) {
         Animal existingAnimal = animalRepository.findById(id).orElse(null);
         if (existingAnimal != null) {
-            existingAnimal.setType(updatedAnimalDto.getType());
-            existingAnimal.setAge(updatedAnimalDto.getAge());
-            existingAnimal.setZoo(updatedAnimalDto.getZoo());
+            existingAnimal.setType(updatedAnimal.getType());
+            existingAnimal.setZoo(updatedAnimal.getZoo());
             animalRepository.save(existingAnimal);
         }
     }
