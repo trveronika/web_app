@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Form</title>
+</head>
+<body>
+<h2>Zoo Form</h2>
+<form th:action="@{/zoos/save}" th:object="${zoo}" method="post">
+    <!-- Add form fields for Zoo properties -->
+    <label for="zooName">Name:</label>
+    <input type="text" id="zooName" th:field="*{zooName}" required>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" th:field="*{location}" required>
+    <!-- Add more fields as needed -->
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
