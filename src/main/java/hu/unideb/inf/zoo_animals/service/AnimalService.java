@@ -11,6 +11,8 @@ public interface AnimalService {
 
     void saveAnimal(Animal animalDto);
 
+    void saveAnimal(Long zooId, Animal animal);
+
     void updateAnimal(Long id, Animal updatedAnimalDto);
 
     void deleteAnimal(Long id);

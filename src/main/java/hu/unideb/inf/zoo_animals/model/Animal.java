@@ -24,7 +24,7 @@ public class Animal {
     @Column(name="colour")
     private String colour;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "zoo_id", nullable = false)
     private Zoo zoo;
 }

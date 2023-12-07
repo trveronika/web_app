@@ -1,20 +1,27 @@
 package hu.unideb.inf.zoo_animals.service.impl;
 
 import hu.unideb.inf.zoo_animals.model.Animal;
+import hu.unideb.inf.zoo_animals.model.Zoo;
 import hu.unideb.inf.zoo_animals.repository.AnimalRepository;
+import hu.unideb.inf.zoo_animals.repository.ZooRepository;
 import hu.unideb.inf.zoo_animals.service.AnimalService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AnimalServiceImpl implements AnimalService {
     private final AnimalRepository animalRepository;
 
+    private final ZooRepository zooRepository;
+
     @Autowired
-    public AnimalServiceImpl(AnimalRepository animalRepository) {
+    public AnimalServiceImpl(AnimalRepository animalRepository,ZooRepository zooRepository) {
         this.animalRepository = animalRepository;
+        this.zooRepository=zooRepository;
     }
 
     @Override
@@ -24,11 +31,23 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public Animal getAnimalById(Long id) {
-        return animalRepository.findById(id).orElse(null);
+        Optional<Animal> optionalAnimal = animalRepository.findById(id);
+        if (optionalAnimal.isPresent()) {
+            return optionalAnimal.get();
+        } else {
+            throw new EntityNotFoundException("Animal not found with ID: " + id);
+        }
     }
 
     @Override
     public void saveAnimal(Animal animal) {
+        animalRepository.save(animal);
+    }
+
+    @Override
+    public void saveAnimal(Long zooId, Animal animal) {
+        Zoo zoo = zooRepository.findById(zooId).orElseThrow(() -> new EntityNotFoundException("Zoo not found with ID: " + zooId));
+        animal.setZoo(zoo);
         animalRepository.save(animal);
     }
 
