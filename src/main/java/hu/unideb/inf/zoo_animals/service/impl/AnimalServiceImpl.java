@@ -56,8 +56,14 @@ public class AnimalServiceImpl implements AnimalService {
         Animal existingAnimal = animalRepository.findById(id).orElse(null);
         if (existingAnimal != null) {
             existingAnimal.setType(updatedAnimal.getType());
+            existingAnimal.setColour(updatedAnimal.getColour());
             existingAnimal.setZoo(updatedAnimal.getZoo());
+            // Update other properties as needed
+
             animalRepository.save(existingAnimal);
+        } else {
+            // Handle the case where the animal with the given id is not found
+            throw new EntityNotFoundException("Animal not found with ID: " + id);
         }
     }
 

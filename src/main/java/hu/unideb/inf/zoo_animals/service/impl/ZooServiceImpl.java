@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ZooServiceImpl implements ZooService {
@@ -31,6 +32,16 @@ public class ZooServiceImpl implements ZooService {
     public void saveZoo(Zoo zoo) {
         zooRepository.save(zoo);
     }
+
+    /*@Override
+    public void updateZoo(Long id, Zoo updatedZoo) {
+        Zoo existingZoo = zooRepository.findById(id).orElse(null);
+        if (existingZoo != null) {
+            existingZoo.setZooName(updatedZoo.getZooName());
+            existingZoo.setLocation(updatedZoo.getLocation());
+            zooRepository.save(existingZoo);
+        }
+    }*/
 
     @Override
     public void updateZoo(Long id, Zoo updatedZoo) {

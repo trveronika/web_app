@@ -100,13 +100,13 @@ public class AnimalController {
         List<Zoo> zoos = zooService.getAllZoos();
         model.addAttribute("zoos", zoos);
         model.addAttribute("animal", animal);
-        return "animal-form";
+        return "animal-update-form";
     }
 
     @PostMapping("/edit/{id}")
     public String updateAnimal(@PathVariable Long id, @ModelAttribute Animal updatedAnimal) {
         animalService.updateAnimal(id, updatedAnimal);
-        return "redirect:/animals";
+        return "redirect:http://localhost:9092/api/animals";
     }
 
     @PostMapping("/delete/{id}")

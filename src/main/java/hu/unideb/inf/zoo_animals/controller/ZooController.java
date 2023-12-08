@@ -3,8 +3,6 @@ package hu.unideb.inf.zoo_animals.controller;
 import hu.unideb.inf.zoo_animals.model.Zoo;
 import hu.unideb.inf.zoo_animals.service.ZooService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -87,10 +85,10 @@ public class ZooController {
     public String showEditZooForm(@PathVariable Long id, Model model) {
         Zoo zoo = zooService.getZooById(id);
         model.addAttribute("zoo", zoo);
-        return "zoo-form";
+        return "zoo-update-form";
     }
 
-    @PostMapping("/edit/{id}") //nem jó, mert csak a nevet lehet átírni és csak ment egy újat nem felülír
+    @PostMapping("/edit/{id}")
     public String updateZoo(@PathVariable Long id, @ModelAttribute Zoo updatedZoo) {
         zooService.updateZoo(id, updatedZoo);
         return "redirect:http://localhost:9092/api/zoos"; // Redirect to the zoo list page
