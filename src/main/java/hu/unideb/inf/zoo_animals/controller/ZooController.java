@@ -94,9 +94,9 @@ public class ZooController {
         return "redirect:http://localhost:9092/api/zoos"; // Redirect to the zoo list page
     }
 
-    @PostMapping("/delete/{id}") //nem működik
-    public String deleteZoo(@PathVariable Long id) {
+    @PostMapping("/delete/{id}")
+    public String deleteAnimal(@PathVariable Long id) {
         zooService.deleteZoo(id);
-        return "redirect:http://localhost:9092/api/zoos"; // Redirect to the zoo list page
+        return "redirect:/zoos";
     }
 }

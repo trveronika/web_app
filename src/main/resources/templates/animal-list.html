@@ -90,20 +90,14 @@
             <!-- Update button -->
             <a th:href="@{/animals/edit/{id}(id=${animal.animalId})}" class="btn">Update</a>
 
-            <!-- Delete button with a confirmation dialog -->
-            <button th:onclick="'javascript:confirmDelete(' + ${animal.animalId} + ')'" class="btn">Delete</button>
+            <!-- Delete button -->
+            <form th:action="@{/animals/delete/{id}(id=${animal.animalId})}" method="post">
+                <button type="submit" class="btn">Delete</button>
+            </form>
         </td>
     </tr>
     </tbody>
 </table>
 
-<script>
-    function confirmDelete(animalId) {
-        var result = confirm('Are you sure you want to delete this animal?');
-        if (result) {
-            window.location.href = '/animals/delete/' + animalId;
-        }
-    }
-</script>
 </body>
 </html>

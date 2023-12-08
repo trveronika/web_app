@@ -109,9 +109,24 @@ public class AnimalController {
         return "redirect:http://localhost:9092/api/animals";
     }
 
+    /*@DeleteMapping("/delete/{id}")
+    public String deleteAnimal(@PathVariable Long id) {
+        animalService.deleteAnimal(id);
+        return "redirect:/animals";
+    }*/
+    /*@GetMapping("/delete/{id}")
+    public String getDeleteAnimalConfirmation(@PathVariable Long id, Model model) {
+        Animal animal = animalService.getAnimalById(id);
+        model.addAttribute("animal", animal);
+        return "deleteanimal";
+    }*/
+
     @PostMapping("/delete/{id}")
     public String deleteAnimal(@PathVariable Long id) {
         animalService.deleteAnimal(id);
         return "redirect:/animals";
     }
+
+
+
 }
