@@ -33,16 +33,6 @@ public class ZooServiceImpl implements ZooService {
         zooRepository.save(zoo);
     }
 
-    /*@Override
-    public void updateZoo(Long id, Zoo updatedZoo) {
-        Zoo existingZoo = zooRepository.findById(id).orElse(null);
-        if (existingZoo != null) {
-            existingZoo.setZooName(updatedZoo.getZooName());
-            existingZoo.setLocation(updatedZoo.getLocation());
-            zooRepository.save(existingZoo);
-        }
-    }*/
-
     @Override
     public void updateZoo(Long id, Zoo updatedZoo) {
         Zoo existingZoo = zooRepository.findById(id).orElse(null);

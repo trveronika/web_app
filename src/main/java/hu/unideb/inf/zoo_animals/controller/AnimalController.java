@@ -13,54 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/*@RestController
-@RequestMapping("/animals")
-@AllArgsConstructor
-public class AnimalController {
-    private final AnimalService animalService;
-
-    @GetMapping("")
-    public ResponseEntity<List<Animal>> getAllAnimals() {
-        List<Animal> animals = animalService.getAllAnimals();
-        return new ResponseEntity<>(animals, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Animal> getAnimalById(@PathVariable Long id) {
-        Animal animal = animalService.getAnimalById(id);
-        return animal != null ? ResponseEntity.ok(animal) : ResponseEntity.notFound().build();
-    }
-
-    @PostMapping("")
-    public ResponseEntity<Void> saveAnimal(@RequestBody Animal animal) {
-        animalService.saveAnimal(animal);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/{zooId}")
-    public ResponseEntity<Void> saveAnimal(@PathVariable Long zooId, @RequestBody Animal animal) {
-        animalService.saveAnimal(zooId, animal);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updateAnimal(@PathVariable Long id, @RequestBody Animal updatedAnimal) {
-        animalService.updateAnimal(id, updatedAnimal);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAnimal(@PathVariable Long id) {
-        animalService.deleteAnimal(id);
-        return ResponseEntity.ok().build();
-    }
-}*/
 @Controller
 @RequestMapping("/animals")
 @AllArgsConstructor
 public class AnimalController {
     private final AnimalService animalService;
-    private final ZooService zooService;  // Assuming you have a ZooService
+    private final ZooService zooService;
 
     @GetMapping("")
     public String getAllAnimals(Model model) {
@@ -74,9 +32,9 @@ public class AnimalController {
         Animal animal = animalService.getAnimalById(id);
         if (animal != null) {
             model.addAttribute("animal", animal);
-            return "animal-details"; // Assuming you have a Thymeleaf template named "animal-details.html"
+            return "animal-details";
         } else {
-            return "not-found"; // Assuming you have a Thymeleaf template named "not-found.html"
+            return "not-found";
         }
     }
 
@@ -109,24 +67,10 @@ public class AnimalController {
         return "redirect:http://localhost:9092/api/animals";
     }
 
-    /*@DeleteMapping("/delete/{id}")
-    public String deleteAnimal(@PathVariable Long id) {
-        animalService.deleteAnimal(id);
-        return "redirect:/animals";
-    }*/
-    /*@GetMapping("/delete/{id}")
-    public String getDeleteAnimalConfirmation(@PathVariable Long id, Model model) {
-        Animal animal = animalService.getAnimalById(id);
-        model.addAttribute("animal", animal);
-        return "deleteanimal";
-    }*/
-
     @PostMapping("/delete/{id}")
     public String deleteAnimal(@PathVariable Long id) {
         animalService.deleteAnimal(id);
         return "redirect:/animals";
     }
-
-
 
 }

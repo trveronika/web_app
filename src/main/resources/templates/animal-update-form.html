@@ -9,23 +9,21 @@
 <body>
 <h2>Update Animal</h2>
 <form th:action="@{/animals/edit/{id}(id=${animal.animalId})}" th:object="${animal}" method="post">
-    <!-- Hidden field for ID -->
     <input type="hidden" th:field="*{animalId}">
 
-    <!-- Add form fields for Animal properties -->
     <label for="type">Type:</label>
     <input type="text" id="type" th:field="*{type}" required>
 
     <label for="colour">Colour:</label>
     <input type="text" id="colour" th:field="*{colour}" required>
 
-    <!-- Select box for Zoo -->
+
     <label for="zoo">Zoo:</label>
     <select id="zoo" th:field="*{zoo}">
         <option th:each="z : ${zoos}" th:value="${z.zooId}" th:text="${z.zooName}"></option>
     </select>
 
-    <!-- Add more fields as needed -->
+
 
     <button type="submit">Update</button>
 </form>

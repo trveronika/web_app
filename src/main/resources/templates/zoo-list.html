@@ -6,60 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoo List</title>
 
-    <!-- Add some styles for better appearance -->
+
     <style>
         body {
-            background-color: #f0f8ff; /* Light blue background */
+            background-color: #f0f8ff;
             font-family: Arial, sans-serif;
         }
 
         h2 {
-            color: #008000; /* Dark green header color */
+            color: #008000;
+            text-align: center;
         }
 
         table {
             width: 70%;
-            margin: 20px auto; /* Center the table */
+            margin: 20px auto;
             border-collapse: collapse;
         }
 
         th, td {
             padding: 10px;
             text-align: left;
-            border: 1px solid #008000; /* Dark green border */
+            border: 1px solid #008000;
         }
 
         th {
-            background-color: #008000; /* Dark green header background */
-            color: #ffffff; /* White text for header */
+            background-color: #008000;
+            color: #ffffff;
         }
 
         tr:nth-child(even) {
-            background-color: #f5f5f5; /* Light gray background for even rows */
+            background-color: #f5f5f5;
         }
 
         tr:hover {
-            background-color: #c1e2b3; /* Light green background on hover */
+            background-color: #c1e2b3;
         }
 
         .btn {
-            background-color: #008000; /* Dark green button background */
-            color: #ffffff; /* White text for button */
+            background-color: #008000;
+            color: #ffffff;
             padding: 10px;
             text-decoration: none;
             display: inline-block;
             margin: 10px;
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 5px;
         }
 
         .btn:hover {
-            background-color: #005700; /* Darker green on hover */
+            background-color: #005700;
         }
     </style>
 </head>
 <body>
 
-<!-- Add Zoo and Main buttons -->
+
 <div>
     <a th:href="@{/}" class="btn">Main</a>
     <a th:href="@{/zoos/new}" class="btn">Add Zoo</a>
@@ -73,23 +74,23 @@
         <th>ID</th>
         <th>Name</th>
         <th>Location</th>
-        <!-- Add more headers as needed -->
+
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Iterate over the list of zoos -->
+
     <tr th:each="zoo : ${zoos}">
         <td th:text="${zoo.zooId}"></td>
         <td th:text="${zoo.zooName}"></td>
         <td th:text="${zoo.location}"></td>
-        <!-- Add more cells as needed -->
+
         <td>
-            <!-- Update button -->
+
             <a th:href="@{/zoos/edit/{id}(id=${zoo.zooId})}" class="btn">Update</a>
 
-            <!-- Delete button with a confirmation dialog -->
-            <form th:action="@{/zoos/delete/{id}(id=${zoo.zooId})}" method="post">
+
+            <form th:action="@{/zoos/delete/{id}(id=${zoo.zooId})}" method="post" >
                 <button type="submit" class="btn">Delete</button>
             </form>
         </td>

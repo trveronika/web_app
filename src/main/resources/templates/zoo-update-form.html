@@ -1,13 +1,13 @@
 <form th:action="@{/zoos/edit/{id}(id=${zoo.zooId})}" th:object="${zoo}" method="post">
-    <!-- Hidden field for ID -->
+
     <input type="hidden" th:field="*{zooId}">
-    <!-- Add form fields for Zoo properties -->
+
     <label for="zooName">Name:</label>
     <input type="text" id="zooName" th:field="*{zooName}" required>
 
     <label for="location">Location:</label>
     <input type="text" id="location" th:field="*{location}" required>
-    <!-- Add more fields as needed -->
+
 
     <button type="submit">Update</button>
 </form>

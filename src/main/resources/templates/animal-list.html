@@ -6,60 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal List</title>
 
-    <!-- Add some styles for better appearance -->
     <style>
         body {
-            background-color: #add8e6; /* Light blue background */
+            background-color: #add8e6;
             font-family: Arial, sans-serif;
         }
 
         h1 {
-            color: #000080; /* Dark blue header color */
+            color: #000080;
+            text-align: center;
         }
 
         table {
             width: 70%;
-            margin: 20px auto; /* Center the table */
+            margin: 20px auto;
             border-collapse: collapse;
+            border-radius: 10px;
         }
 
         th, td {
             padding: 10px;
             text-align: left;
-            border: 1px solid #000080; /* Dark blue border */
+            border: 1px solid #000080;
+            border-radius: 10px;
         }
 
         th {
-            background-color: #000080; /* Dark blue header background */
-            color: #ffffff; /* White text for header */
+            background-color: #000080;
+            color: #ffffff;
         }
 
         tr:nth-child(even) {
-            background-color: #f0f8ff; /* Light blue background for even rows */
+            background-color: #f0f8ff;
         }
 
         tr:hover {
-            background-color: #b0e0e6; /* Lighter blue background on hover */
+            background-color: #b0e0e6;
         }
 
         .btn {
-            background-color: #000080; /* Dark blue button background */
-            color: #ffffff; /* White text for button */
+            background-color: #000080;
+            color: #ffffff;
             padding: 10px;
             text-decoration: none;
             display: inline-block;
             margin: 10px;
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 5px;
         }
 
         .btn:hover {
-            background-color: #000066; /* Darker blue on hover */
+            background-color: #000066;
         }
     </style>
 </head>
 <body>
 
-<!-- Add Zoo and Main buttons -->
 <div>
     <a th:href="@{/}" class="btn">Main</a>
     <a th:href="@{/animals/new}" class="btn">Add Animal</a>
@@ -74,24 +75,18 @@
         <th>Type</th>
         <th>Colour</th>
         <th>Zoo</th>
-        <!-- Add more headers as needed -->
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Iterate over the list of animals -->
     <tr th:each="animal : ${animals}">
         <td th:text="${animal.animalId}"></td>
         <td th:text="${animal.type}"></td>
         <td th:text="${animal.colour}"></td>
         <td th:text="${animal.zoo.zooName}"></td>
-        <!-- Add more cells as needed -->
         <td>
-            <!-- Update button -->
             <a th:href="@{/animals/edit/{id}(id=${animal.animalId})}" class="btn">Update</a>
-
-            <!-- Delete button -->
-            <form th:action="@{/animals/delete/{id}(id=${animal.animalId})}" method="post">
+            <form th:action="@{/animals/delete/{id}(id=${animal.animalId})}" method="post" style="display: inline;">
                 <button type="submit" class="btn">Delete</button>
             </form>
         </td>

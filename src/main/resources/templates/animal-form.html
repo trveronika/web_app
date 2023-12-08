@@ -9,7 +9,7 @@
 <body>
 <h2>Animal Form</h2>
 <form th:action="@{/animals/save}" th:object="${animal}" method="post">
-    <!-- Add form fields for Animal properties -->
+
     <label for="type">Type:</label>
     <input type="text" id="type" th:field="*{type}" required>
 
@@ -20,7 +20,7 @@
     <select id="zoo" th:field="*{zoo.zooId}" required>
         <option th:each="zoo : ${zoos}" th:value="${zoo.zooId}" th:text="${zoo.zooName}"></option>
     </select>
-    <!-- Add more fields as needed -->
+
 
     <button type="submit">Save</button>
 </form>

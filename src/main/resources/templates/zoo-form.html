@@ -9,13 +9,11 @@
 <body>
 <h2>Zoo Form</h2>
 <form th:action="@{/zoos/save}" th:object="${zoo}" method="post">
-    <!-- Add form fields for Zoo properties -->
     <label for="zooName">Name:</label>
     <input type="text" id="zooName" th:field="*{zooName}" required>
 
     <label for="location">Location:</label>
     <input type="text" id="location" th:field="*{location}" required>
-    <!-- Add more fields as needed -->
 
     <button type="submit">Save</button>
 </form>
