@@ -5,10 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoo List</title>
+
+    <!-- Add some styles for better appearance -->
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #008000; /* Dark green header color */
+        }
+
+        table {
+            width: 70%;
+            margin: 20px auto; /* Center the table */
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #008000; /* Dark green border */
+        }
+
+        th {
+            background-color: #008000; /* Dark green header background */
+            color: #ffffff; /* White text for header */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f5f5; /* Light gray background for even rows */
+        }
+
+        tr:hover {
+            background-color: #c1e2b3; /* Light green background on hover */
+        }
+
+        .btn {
+            background-color: #008000; /* Dark green button background */
+            color: #ffffff; /* White text for button */
+            padding: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .btn:hover {
+            background-color: #005700; /* Darker green on hover */
+        }
+    </style>
 </head>
 <body>
+
+<!-- Add Zoo and Main buttons -->
+<div>
+    <a th:href="@{/}" class="btn">Main</a>
+    <a th:href="@{/zoos/new}" class="btn">Add Zoo</a>
+</div>
+
 <h2>Zoo List</h2>
-<table border="1">
+<table>
     <thead>
     <tr>
         <th>ID</th>
@@ -27,10 +85,10 @@
         <!-- Add more cells as needed -->
         <td>
             <!-- Update button -->
-            <a th:href="@{/zoos/edit/{id}(id=${zoo.zooId})}">Update</a>
+            <a th:href="@{/zoos/edit/{id}(id=${zoo.zooId})}" class="btn">Update</a>
 
             <!-- Delete button with a confirmation dialog -->
-            <button th:onclick="'javascript:confirmDelete(' + ${zoo.zooId} + ')'" type="button">Delete</button>
+            <button th:onclick="'javascript:confirmDelete(' + ${zoo.zooId} + ')'" class="btn">Delete</button>
         </td>
     </tr>
     </tbody>

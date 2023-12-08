@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Form</title>
+</head>
+<body>
+<h2>Animal Form</h2>
+<form th:action="@{/animals/save}" th:object="${animal}" method="post">
+    <!-- Add form fields for Animal properties -->
+    <label for="type">Type:</label>
+    <input type="text" id="type" th:field="*{type}" required>
+
+    <label for="colour">Colour:</label>
+    <input type="text" id="colour" th:field="*{colour}" required>
+
+    <label for="zoo">Zoo:</label>
+    <select id="zoo" th:field="*{zoo.zooId}" required>
+        <option th:each="zoo : ${zoos}" th:value="${zoo.zooId}" th:text="${zoo.zooName}"></option>
+    </select>
+    <!-- Add more fields as needed -->
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

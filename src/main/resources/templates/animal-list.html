@@ -1,10 +1,108 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal List</title>
+
+    <!-- Add some styles for better appearance -->
+    <style>
+        body {
+            background-color: #add8e6; /* Light blue background */
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #000080; /* Dark blue header color */
+        }
+
+        table {
+            width: 70%;
+            margin: 20px auto; /* Center the table */
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #000080; /* Dark blue border */
+        }
+
+        th {
+            background-color: #000080; /* Dark blue header background */
+            color: #ffffff; /* White text for header */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f0f8ff; /* Light blue background for even rows */
+        }
+
+        tr:hover {
+            background-color: #b0e0e6; /* Lighter blue background on hover */
+        }
+
+        .btn {
+            background-color: #000080; /* Dark blue button background */
+            color: #ffffff; /* White text for button */
+            padding: 10px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .btn:hover {
+            background-color: #000066; /* Darker blue on hover */
+        }
+    </style>
 </head>
 <body>
+
+<!-- Add Zoo and Main buttons -->
+<div>
+    <a th:href="@{/}" class="btn">Main</a>
+    <a th:href="@{/api/animals/new}" class="btn">Add Animal</a>
+</div>
+
 <h1>Animal List</h1>
-<!-- Your Animal list rendering logic here -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Colour</th>
+        <th>Zoo</th>
+        <!-- Add more headers as needed -->
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of animals -->
+    <tr th:each="animal : ${animals}">
+        <td th:text="${animal.animalId}"></td>
+        <td th:text="${animal.type}"></td>
+        <td th:text="${animal.colour}"></td>
+        <td th:text="${animal.zoo.zooName}"></td>
+        <!-- Add more cells as needed -->
+        <td>
+            <!-- Update button -->
+            <a th:href="@{/animals/edit/{id}(id=${animal.animalId})}" class="btn">Update</a>
+
+            <!-- Delete button with a confirmation dialog -->
+            <button th:onclick="'javascript:confirmDelete(' + ${animal.animalId} + ')'" class="btn">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    function confirmDelete(animalId) {
+        var result = confirm('Are you sure you want to delete this animal?');
+        if (result) {
+            window.location.href = '/animals/delete/' + animalId;
+        }
+    }
+</script>
 </body>
 </html>

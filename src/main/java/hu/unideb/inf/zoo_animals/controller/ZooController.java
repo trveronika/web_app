@@ -53,14 +53,14 @@ public class ZooController {
 public class ZooController {
     private final ZooService zooService;
 
-    @GetMapping("")
+    @GetMapping("") //működik
     public String getAllZoos(Model model) {
         List<Zoo> zoos = zooService.getAllZoos();
         model.addAttribute("zoos", zoos);
-        return "zoo-list"; // Assuming you have a Thymeleaf template named "zoo-list.html"
+        return "zoo-list";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}") //működik de rosszul néz ki, kellene egy táblázat
     public String getZooById(@PathVariable Long id, Model model) {
         Zoo zoo = zooService.getZooById(id);
         if (zoo != null) {
@@ -70,35 +70,35 @@ public class ZooController {
             return "not-found"; // Assuming you have a Thymeleaf template named "not-found.html"
         }
     }
-    @GetMapping("/new")
+    @GetMapping("/new") //a form megjelenik, és hozzá is adódik a zoo, vissza is irányít a zoo listre (nice)
     public String showZooForm(Model model) {
         model.addAttribute("zoo", new Zoo());
         return "zoo-form";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/save") //működik a mentés
     public String saveZoo(@ModelAttribute Zoo zoo) {
         zooService.saveZoo(zoo);
         // Redirect to the list of zoos after saving
-        return "redirect:/zoos";
+        return "redirect:http://localhost:9092/api/zoos";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditZooForm(@PathVariable Long id, Model model) {
         Zoo zoo = zooService.getZooById(id);
         model.addAttribute("zoo", zoo);
-        return "zoo-form"; // Assuming you have a Thymeleaf template named "zoo-form.html"
+        return "zoo-form";
     }
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/edit/{id}") //nem jó, mert csak a nevet lehet átírni és csak ment egy újat nem felülír
     public String updateZoo(@PathVariable Long id, @ModelAttribute Zoo updatedZoo) {
         zooService.updateZoo(id, updatedZoo);
-        return "redirect:/zoos"; // Redirect to the zoo list page
+        return "redirect:http://localhost:9092/api/zoos"; // Redirect to the zoo list page
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/delete/{id}") //nem működik
     public String deleteZoo(@PathVariable Long id) {
         zooService.deleteZoo(id);
-        return "redirect:/api/zoos"; // Redirect to the zoo list page
+        return "redirect:http://localhost:9092/api/zoos"; // Redirect to the zoo list page
     }
 }

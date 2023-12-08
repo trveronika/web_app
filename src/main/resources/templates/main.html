@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button-container {
+            display: flex;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        .zoo-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .animal-button {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button-container">
+    <a th:href="@{/zoos}" class="button zoo-button">Zoo List</a>
+    <a th:href="@{/animals}" class="button animal-button">Animal List</a>
+</div>
+
+</body>
+</html>
