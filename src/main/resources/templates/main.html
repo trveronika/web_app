@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
@@ -11,6 +13,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            background: linear-gradient(45deg, #FF8C00, #FFD700);
         }
 
         .button-container {
@@ -19,8 +22,13 @@
 
         .button {
             margin: 10px;
-            padding: 20px;
-            font-size: 18px;
+            padding: 30px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
 
         .zoo-button {
@@ -32,13 +40,22 @@
             background-color: #008CBA;
             color: white;
         }
+
+        .button i {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
 
 <div class="button-container">
-    <a th:href="@{/zoos}" class="button zoo-button">Zoo List</a>
-    <a th:href="@{/animals}" class="button animal-button">Animal List</a>
+
+    <a th:href="@{/zoos}" class="button zoo-button">
+        <i class="material-icons">location_city</i> Zoo List
+    </a>
+    <a th:href="@{/animals}" class="button animal-button">
+        <i class="material-icons">pets</i> Animal List
+    </a>
 </div>
 
 </body>

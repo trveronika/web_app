@@ -5,11 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Form</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        form {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0074cc;
+            color: #ffffff;
+            padding: 15px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005a9e;
+        }
+    </style>
 </head>
 <body>
-<h2>Animal Form</h2>
 <form th:action="@{/animals/save}" th:object="${animal}" method="post">
-
     <label for="type">Type:</label>
     <input type="text" id="type" th:field="*{type}" required>
 
@@ -20,7 +63,6 @@
     <select id="zoo" th:field="*{zoo.zooId}" required>
         <option th:each="zoo : ${zoos}" th:value="${zoo.zooId}" th:text="${zoo.zooName}"></option>
     </select>
-
 
     <button type="submit">Save</button>
 </form>
